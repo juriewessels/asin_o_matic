@@ -1,0 +1,66 @@
+Rails:
+  Enabled: true
+
+AllCops:
+  Include:
+    - '**/*.rb'
+    - '**/*.rake'
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'script/**/*'
+    - 'db/schema.rb'
+    - 'node_modules/**/*'
+
+Documentation:
+  Exclude:
+    - 'app/helpers/**/*.rb'
+    - 'db/migrate/*.rb'
+    - 'config/**/*.rb'
+    - 'lib/tasks/**/*.rake'
+    - 'spec/support/**/*.rb'
+Metrics/LineLength:
+  Exclude:
+    - 'db/migrate/*.rb'
+    - 'config/**/*.rb'
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/*.rb'
+Metrics/BlockLength:
+  ExcludedMethods:
+    - describe
+    - context
+    - shared_context
+Metrics/LineLength:
+  Max: 100
+
+Layout/EmptyLinesAroundClassBody:
+  EnforcedStyle: empty_lines
+Layout/EmptyLinesAroundModuleBody:
+  EnforcedStyle: empty_lines
+Layout/FirstArrayElementLineBreak:
+  Enabled: true
+Layout/FirstHashElementLineBreak:
+  Enabled: true
+Layout/MultilineAssignmentLayout:
+  Enabled: true
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+Style/OptionHash:
+  Enabled: true
+Style/FileName:
+  Exclude:
+    - 'Gemfile'
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+  # If `true`, strings which span multiple lines using `\` for continuation must
+  # use the same type of quotes on each line.
+  ConsistentQuotesInMultiline: false
+
+
