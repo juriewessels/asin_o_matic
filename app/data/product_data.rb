@@ -24,7 +24,8 @@ class ProductData
   end
 
   def parse_price
-    page.at('#priceblock_ourprice').text.match(/(\d+[,.]\d+)/)[0]
+    price = [page.at('#priceblock_ourprice'), page.at('#priceblock_dealprice')].compact.first
+    price.text.match(/(\d+[,.]\d+)/)[0]
   end
 
 end
