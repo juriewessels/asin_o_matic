@@ -3,7 +3,7 @@ class Api::V1::BaseController < ApplicationController
 
   before_action :ensure_json
 
-  rescue_from ActiveRecord::RecordNotFound, GetPageForAsin::ProductNotFoundError do |exception|
+  rescue_from ActiveRecord::RecordNotFound, AsinOMator::ProductNotFoundError do |exception|
     render json: { message: exception.message }, status: 404
   end
 
@@ -11,7 +11,7 @@ class Api::V1::BaseController < ApplicationController
     render json: { message: exception.message }, status: 422
   end
 
-  rescue_from GetPageForAsin::AsinRequiredError, GetPageForAsin::MechanizerError do |exception|
+  rescue_from AsinOMator::AsinRequiredError, AsinOMator::MechanizerError do |exception|
     render json: { message: exception.message }, status: 500
   end
 
