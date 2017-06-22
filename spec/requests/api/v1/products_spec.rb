@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'App management', type: :request do
+RSpec.describe 'Product requests', type: :request do
   include_context 'json request'
   include_context 'product response matcher'
 
