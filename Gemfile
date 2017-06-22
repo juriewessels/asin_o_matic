@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'asin_o_mator', github: 'juriewessels/asin_o_mator', ref: 'v0.1.1'
 gem 'jbuilder', '~> 2.5'
 gem 'mechanize'
 gem 'pg', '~> 0.18'

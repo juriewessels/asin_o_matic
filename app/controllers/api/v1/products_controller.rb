@@ -12,12 +12,12 @@ class Api::V1::ProductsController < Api::V1::BaseController
   def create
     @asin = product_params[:asin]
     @product = Product.find_or_initialize_by(asin: @asin)
-    @product.update_attributes!(product_data.model_attributes)
+    @product.update_attributes!(product_data)
   end
 
   def update
     @asin = @product.asin
-    @product.update!(product_data.model_attributes)
+    @product.update!(product_data)
   end
 
   def destroy
@@ -27,8 +27,7 @@ class Api::V1::ProductsController < Api::V1::BaseController
   private
 
   def product_data
-    page = GetPageForAsin.call(asin: @asin)
-    ProductData.new(asin: @asin, page: page)
+    AsinOMator::Product.new(asin: @asin).data
   end
 
   def product_params
