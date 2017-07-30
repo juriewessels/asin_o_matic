@@ -26,6 +26,8 @@ class Api::V1::ProductsController < Api::V1::BaseController
 
   private
 
+  # returns the `#data` attribute of an `AsinOMator::Product` instance
+  # failure to retrieve product data is handled in the `Api::V1::BaseController`
   def product_data
     AsinOMator::Product.new(asin: @asin).data
   end

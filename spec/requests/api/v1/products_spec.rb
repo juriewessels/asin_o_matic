@@ -1,18 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe 'Product requests', type: :request do
+  # helper to convert a JSON response to a Hash with symbolized keys
   include_context 'json request'
+
+  # a custom matcher for product responses
   include_context 'product response matcher'
 
+  # API product base url
   let(:url) { '/api/v1/products' }
 
-  context 'viewing all products' do
+  context 'listing all products - #GET /products' do
     let!(:product_one) { create(:product) }
     let!(:product_two) { create(:product) }
 
     subject(:perform_request) { get url }
 
-    it 'returns a collection of product details' do
+    it 'listing allreturns a collection of product details' do
       perform_request
       expect(json_body).to include(
         products: a_collection_containing_exactly(
@@ -23,7 +27,7 @@ RSpec.describe 'Product requests', type: :request do
     end
   end
 
-  context 'creating a product' do
+  context 'creating a product - #POST /products' do
     subject(:perform_request) { post url, params: params }
 
     describe 'if the ASIN exists' do
@@ -93,7 +97,7 @@ RSpec.describe 'Product requests', type: :request do
     end
   end
 
-  context 'viewing a product' do
+  context 'viewing a product - #GET /products/:id' do
     let(:product) { create(:product) }
 
     describe 'if the product exists' do
@@ -115,7 +119,7 @@ RSpec.describe 'Product requests', type: :request do
     end
   end
 
-  context 'updating a product' do
+  context 'updating a product - #PATCH /products/:id' do
     let!(:product) { create(:product, title: 'Some Title', asin: 'B002QYW8LW') }
 
     subject(:perform_request) { put "#{url}/#{product.id}" }
@@ -136,7 +140,7 @@ RSpec.describe 'Product requests', type: :request do
     end
   end
 
-  context 'deleting a product' do
+  context 'deleting a product - #DELETE /products/id' do
     let!(:product) { create(:product) }
 
     subject(:perform_request) { delete "#{url}/#{product.id}" }

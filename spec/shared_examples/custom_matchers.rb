@@ -1,4 +1,6 @@
 RSpec.shared_context 'product response matcher' do
+  # a custom matcher for product responses
+  # :reek:FeatureEnvy
   def product_response_matcher(product:)
     a_hash_including(id: product.id,
                      asin: product.asin,
